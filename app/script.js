@@ -1,6 +1,13 @@
 // Global tasks array
 let tasks = [];
 
+const img1 = new Image();
+img1.src = 'public/profile.jpg';
+
+const img2 = new Image();
+img2.src = 'public/profile2.jpg';
+
+
 /**
  * Load tasks from localStorage when page loads
  */
@@ -21,13 +28,22 @@ function saveTasks() {
 
 /**
  * Update profile image based on task count
- */
-function updateProfileImage() {
+ */function updateProfileImage() {
     const profileImage = document.getElementById('profileImage');
-    if (tasks.length > 0) {
-        profileImage.src = 'public/profile2.jpg';
-    } else {
+    
+    if (tasks.length === 0) {
+        // No tasks at all
         profileImage.src = 'public/profile.jpg';
+    } else {
+        const completedCount = tasks.filter(t => t.completed).length;
+        
+        if (completedCount === tasks.length) {
+            // All tasks completed
+            profileImage.src = 'public/profile3.jpg'; // 👈 Add this image!
+        } else {
+            // Some tasks still pending
+            profileImage.src = 'public/profile2.jpg';
+        }
     }
 }
 

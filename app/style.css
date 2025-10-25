@@ -30,13 +30,12 @@ body {
     height: 80px;
     border-radius: 50%;
     object-fit: cover;
-    /* Cyan border - default */
+    object-position: center; /* Optional: ensures face stays centered */
     border: 3px solid #06b6d4;
-    /* Forest/Boreal green border - uncomment to use */
-    /* border: 3px solid #059669; */
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
     background: white;
     transition: all 0.3s ease;
+    max-width: 100%; /* 👈 This prevents oversized images from overflowing */
 }
 
 .container {
