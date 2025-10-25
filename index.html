@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="app/style.css">
 </head>
 <body>
-    <!-- Profile Image Section - Outside the white box -->
+    <!-- Profile Image Section -->
     <div class="profile-section">
         <img src="public/profile.jpg" alt="Profile" class="profile-image" id="profileImage">
     </div>
@@ -28,11 +28,15 @@
         <ul class="task-list" id="taskList"></ul>
 
         <div class="stats" id="stats"></div>
+
+        <!-- Reset Button (hidden by default) -->
+        <button id="resetButton" class="reset-btn" onclick="resetAllTasks()" style="display: none;">
+            🎉 Reset All Tasks
+        </button>
     </div>
 
-    <!-- Confetti Canvas -->
+    <!-- Confetti Canvas (behind image) -->
     <canvas id="confettiCanvas"></canvas>
-
 
     <script src="app/script.js"></script>
 </body>
