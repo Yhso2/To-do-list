@@ -42,8 +42,9 @@ function updateProfileImage() {
         const completedCount = tasks.filter(t => t.completed).length;
         
         if (completedCount === tasks.length) {
-            // All tasks completed
-            profileImage.src = 'public/profile3.jpg'; // 👈 Make sure this file exists!
+            // All tasks completed → show profile3.jpg AND trigger confetti!
+            profileImage.src = 'public/profile3.jpg';
+            startConfetti(); // 🎉 Trigger confetti!
         } else {
             // Some tasks still pending
             profileImage.src = 'public/profile2.jpg';
@@ -131,5 +132,69 @@ function renderTasks() {
     stats.innerHTML = `${completedCount} of ${tasks.length} tasks completed`;
 }
 
+// 🔥 CONFETTI ANIMATION (Simple & Lightweight)
+function startConfetti() {
+    const canvas = document.getElementById('confettiCanvas');
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    const confettiCount = 150;
+    const confettiColors = ['#ff0000', '#00ff00', '#0000ff', '#ffff00', '#ff00ff', '#00ffff'];
+
+    const confetti = [];
+    for (let i = 0; i < confettiCount; i++) {
+        confetti.push({
+            x: Math.random() * canvas.width,
+            y: Math.random() * canvas.height - canvas.height,
+            size: Math.random() * 10 + 5,
+            color: confettiColors[Math.floor(Math.random() * confettiColors.length)],
+            speed: Math.random() * 3 + 2,
+            angle: Math.random() * 2 * Math.PI,
+            rotation: Math.random() * 2 * Math.PI,
+            rotationSpeed: (Math.random() - 0.5) * 0.1
+        });
+    }
+
+    function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        confetti.forEach(p => {
+            p.y += p.speed;
+            p.rotation += p.rotationSpeed;
+            
+            ctx.save();
+            ctx.translate(p.x, p.y);
+            ctx.rotate(p.rotation);
+            ctx.fillStyle = p.color;
+            ctx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size);
+            ctx.restore();
+
+            if (p.y > canvas.height) {
+                p.y = -p.size;
+                p.x = Math.random() * canvas.width;
+            }
+        });
+
+        requestAnimationFrame(animate);
+    }
+
+    animate();
+
+    // Stop confetti after 5 seconds
+    setTimeout(() => {
+        canvas.style.display = 'none';
+        // Optional: reset canvas for next time
+        confetti.length = 0;
+    }, 5000);
+}
+
 // Load tasks when page loads
 loadTasks();
+
+// Resize canvas on window resize
+window.addEventListener('resize', () => {
+    const canvas = document.getElementById('confettiCanvas');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+});
