@@ -1,12 +1,15 @@
-// Global tasks array
-let tasks = [];
-
+// Preload images to prevent flicker
 const img1 = new Image();
 img1.src = 'public/profile.jpg';
 
 const img2 = new Image();
 img2.src = 'public/profile2.jpg';
 
+const img3 = new Image();
+img3.src = 'public/profile3.jpg';
+
+// Global tasks array
+let tasks = [];
 
 /**
  * Load tasks from localStorage when page loads
@@ -27,8 +30,9 @@ function saveTasks() {
 }
 
 /**
- * Update profile image based on task count
- */function updateProfileImage() {
+ * Update profile image based on task count and completion status
+ */
+function updateProfileImage() {
     const profileImage = document.getElementById('profileImage');
     
     if (tasks.length === 0) {
@@ -39,7 +43,7 @@ function saveTasks() {
         
         if (completedCount === tasks.length) {
             // All tasks completed
-            profileImage.src = 'public/profile3.jpg'; // 👈 Add this image!
+            profileImage.src = 'public/profile3.jpg'; // 👈 Make sure this file exists!
         } else {
             // Some tasks still pending
             profileImage.src = 'public/profile2.jpg';
@@ -101,7 +105,7 @@ function renderTasks() {
     const taskList = document.getElementById('taskList');
     const stats = document.getElementById('stats');
 
-    // Update profile image based on task count
+    // Update profile image based on task state
     updateProfileImage();
 
     if (tasks.length === 0) {
