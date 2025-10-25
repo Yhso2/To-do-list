@@ -1,3 +1,4 @@
+// Global tasks array
 let tasks = [];
 
 /**
@@ -16,6 +17,18 @@ function loadTasks() {
  */
 function saveTasks() {
     localStorage.setItem('todoTasks', JSON.stringify(tasks));
+}
+
+/**
+ * Update profile image based on task count
+ */
+function updateProfileImage() {
+    const profileImage = document.getElementById('profileImage');
+    if (tasks.length > 0) {
+        profileImage.src = 'public/profile2.jpg';
+    } else {
+        profileImage.src = 'public/profile.jpg';
+    }
 }
 
 /**
@@ -71,6 +84,9 @@ function deleteTask(id) {
 function renderTasks() {
     const taskList = document.getElementById('taskList');
     const stats = document.getElementById('stats');
+
+    // Update profile image based on task count
+    updateProfileImage();
 
     if (tasks.length === 0) {
         taskList.innerHTML = '<div class="empty-state">No tasks yet. Add one above!</div>';

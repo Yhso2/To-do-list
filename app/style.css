@@ -6,12 +6,37 @@
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    /* Cyan gradient - default */
+    background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%);
+    /* Forest/Boreal green gradient - uncomment to use */
+    /* background: linear-gradient(135deg, #059669 0%, #047857 100%); */
     min-height: 100vh;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     padding: 20px;
+}
+
+/* Profile Image Styles */
+.profile-section {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.profile-image {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    /* Cyan border - default */
+    border: 3px solid #06b6d4;
+    /* Forest/Boreal green border - uncomment to use */
+    /* border: 3px solid #059669; */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    background: white;
+    transition: all 0.3s ease;
 }
 
 .container {
@@ -47,12 +72,18 @@ h1 {
 
 #taskInput:focus {
     outline: none;
-    border-color: #667eea;
+    /* Cyan focus - default */
+    border-color: #06b6d4;
+    /* Forest/Boreal green focus - uncomment to use */
+    /* border-color: #059669; */
 }
 
 #addButton {
     padding: 12px 25px;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    /* Cyan gradient - default */
+    background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%);
+    /* Forest/Boreal green gradient - uncomment to use */
+    /* background: linear-gradient(135deg, #059669 0%, #047857 100%); */
     color: white;
     border: none;
     border-radius: 8px;
